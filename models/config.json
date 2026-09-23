@@ -1,0 +1,11 @@
+{
+  "vocab_size": 2662,
+  "embed_size": 256,
+  "hidden_size": 512,
+  "feature_dim": 2048,
+  "num_layers": 1,
+  "pad_idx": 0,
+  "start_idx": 1,
+  "end_idx": 2,
+  "max_caption_length": 35
+}

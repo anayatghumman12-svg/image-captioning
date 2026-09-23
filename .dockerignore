@@ -1,0 +1,8 @@
+data/
+test_images/
+models/features/
+.venv/
+__pycache__/
+*.pyc
+reports/
+.git/

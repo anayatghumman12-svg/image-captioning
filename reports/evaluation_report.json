@@ -1,0 +1,65 @@
+{
+  "bleu_scores": {
+    "bleu1": 0.6011365010276871,
+    "bleu2": 0.42206797516084454,
+    "bleu3": 0.28319868692923567,
+    "bleu4": 0.18854606161969764
+  },
+  "examples": [
+    {
+      "image": "3153067758_53f003b1df.jpg",
+      "references": [
+        "A person in a red shirt holding a paper bag above a baggage cart .",
+        "A person riding transit ( catching ? ) a paper bag .",
+        "A woman sitting on a bus with a paper bag hanging on a carrier",
+        "Man seated on train , holding onto a rolling coat rack that holds a shopping bag",
+        "Woman with a brown paper bag on a bus ."
+      ],
+      "generated": "a man is sitting on a bed with a <unk>"
+    },
+    {
+      "image": "3449170348_34dac4a380.jpg",
+      "references": [
+        "A girl dances on a sidewalk .",
+        "A girl in a polka dotted top and pink pants plays outside .",
+        "A girl wearing pink dances on the sidewalk .",
+        "The girl has pink pants and a polka dot jacket on .",
+        "Watching a child from behind as their long hair flies out ."
+      ],
+      "generated": "a young girl wearing a pink shirt and pink pants is running through a grassy area"
+    },
+    {
+      "image": "3626964430_cb5c7e5acc.jpg",
+      "references": [
+        "People playing cricket in the park , pine trees in the back .",
+        "People playing cricket on a field .",
+        "Some adults play Cricket on a nice day .",
+        "Some men are playing cricket in front of a white building .",
+        "The men stand together out on the lawn ."
+      ],
+      "generated": "two men are playing soccer in a field"
+    },
+    {
+      "image": "2286823363_7d554ea740.jpg",
+      "references": [
+        "A little boy jumping from one chair to another .",
+        "A young boy jumps from one black chair to another .",
+        "A young boy is leaping from one chair to another .",
+        "A young boy jumping from one chair to another in his house",
+        "A young boy leaps from chair to chair ."
+      ],
+      "generated": "a boy jumps off of a bed"
+    },
+    {
+      "image": "241347204_007d83e252.jpg",
+      "references": [
+        "A football player in red and white is holding both hands up .",
+        "Football players gather around the referees .",
+        "Football players gathering to contest something to collaborating officials .",
+        "Oklahoma University football players in front of a crowd of Sooners fans and next to three referees .",
+        "The red and white football team is talking with the officials ."
+      ],
+      "generated": "a football player in a red jersey is running"
+    }
+  ]
+}

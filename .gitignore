@@ -1,0 +1,7 @@
+﻿data/
+models/*.pt
+models/features/
+__pycache__/
+*.pyc
+.venv/
+.vscode/

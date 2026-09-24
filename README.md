@@ -1,9 +1,9 @@
 # Image Captioning System (CNN Encoder + LSTM Decoder)
 
-**Author:** Muhammad Anayatullah
-**Program:** Nextbridge Summer Internship 2026 — AI / Machine Learning Track
-**Task:** Task 4 — Image Captioning (CNN + NLP)
-**Dataset:** Flickr8k (8,091 images, 5 captions each)
+- **Author:** Muhammad Anayatullah
+- **Program:** Nextbridge Summer Internship 2026 — AI / Machine Learning Track
+- **Task:** Task 4 — Image Captioning (CNN + NLP)
+- **Dataset:** Flickr8k (8,091 images, 5 captions each)
 
 ---
 
@@ -22,23 +22,24 @@ Example:
 
 ## Architecture
 
+```
 Image (224x224x3)
-|
-v
+      |
+      v
 ResNet-50 (frozen, ImageNet-pretrained)
-|
-v
+      |
+      v
 2048-dim feature vector
-|
-v
+      |
+      v
 LSTM Decoder (embedding -> LSTM -> vocabulary projection)
-|
-v
+      |
+      v
 Generated caption (word by word)
-|
-v
-FastAPI /caption endpoint --> Docker container
-
+      |
+      v
+FastAPI /caption endpoint  -->  Docker container
+```
 
 The encoder is used purely as a fixed feature extractor: its final classification layer is
 removed and its weights are never updated during training. The decoder's LSTM is seeded with
@@ -49,27 +50,28 @@ sequence.
 
 ## Project Structure
 
+```
 image-captioning/
-├── settings.py Central configuration (paths, hyperparameters)
+├── settings.py               Central configuration (paths, hyperparameters)
 ├── src/
-│ ├── preprocessing.py Load captions.txt; split train/val/test by image
-│ ├── vocabulary.py Tokenization; word-to-id mapping; save/load
-│ ├── encoder.py Frozen ResNet-50 CNN encoder
-│ ├── feature_extraction.py Cache CNN features to disk
-│ ├── dataset.py PyTorch Dataset and batch collation
-│ ├── decoder.py LSTM decoder: training, greedy decoding, beam search
-│ ├── train.py Training loop, checkpointing, loss curves
-│ ├── evaluate.py BLEU scoring; greedy vs. beam search comparison
-│ └── utils.py Device selection, image preprocessing, logging
+│   ├── preprocessing.py      Load captions.txt; split train/val/test by image
+│   ├── vocabulary.py         Tokenization; word-to-id mapping; save/load
+│   ├── encoder.py             Frozen ResNet-50 CNN encoder
+│   ├── feature_extraction.py Cache CNN features to disk
+│   ├── dataset.py             PyTorch Dataset and batch collation
+│   ├── decoder.py             LSTM decoder: training, greedy decoding, beam search
+│   ├── train.py                Training loop, checkpointing, loss curves
+│   ├── evaluate.py             BLEU scoring; greedy vs. beam search comparison
+│   └── utils.py                 Device selection, image preprocessing, logging
 ├── app/
-│ ├── inference.py Loads the trained model once; runs inference
-│ └── main.py FastAPI application and /caption endpoint
-├── models/ Trained weights, vocabulary, config (not committed)
-├── reports/ Loss curve and evaluation report
+│   ├── inference.py           Loads the trained model once; runs inference
+│   └── main.py                  FastAPI application and /caption endpoint
+├── models/                     Trained weights, vocabulary, config (not committed)
+├── reports/                    Loss curve and evaluation report
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
-
+```
 
 ## Setup
 
@@ -81,10 +83,11 @@ pip install -r requirements.txt
 
 Place the Flickr8k dataset as:
 
+```
 data/
-├── Images/ 8,091 JPEG images
-└── captions.txt image_filename, caption
-
+├── Images/          8,091 JPEG images
+└── captions.txt     image_filename, caption
+```
 
 Images are split 80% / 10% / 10% into train/validation/test at the image level (all five
 captions of a given image remain in the same split), using a fixed random seed for
@@ -120,7 +123,7 @@ had begun to overfit; the epoch 7 weights were retained.
 | 1000268201_693b08cb0e.jpg | (girl climbing a tree) | a little girl in a pink dress is climbing a tree |
 | 3153067758_53f003b1df.jpg | A person holding a paper bag above a baggage cart. | a man is sitting on a bed with a `<unk>` (failure case) |
 
-Training and validation loss over epochs are shown in `reports/loss_curve.png`.
+![Training and validation loss](reports/loss_curve.png)
 
 ## API Usage
 
@@ -190,4 +193,4 @@ FastAPI service at inference time, preventing a training/serving mismatch.
 - Vocabulary is restricted to words occurring at least 5 times in the training captions; rarer
   or unseen words are mapped to an unknown-word token.
 - Given additional time, adding a visual attention mechanism would likely be the single
-  highest-impact next improvement
+  highest-impact next improvement.
